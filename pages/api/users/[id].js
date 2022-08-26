@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 					message: "No users found",
 				});
 			}
-			return res.status(200).json({ message: "User found", data: getUserById });
+			return res.status(200).json(getUserById);
 		} catch (error) {
 			return res.status(500).json({
 				message: "Something went wrong",
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
 					message: "No users found",
 				});
 			}
-			return res.status(200).json({ message: "User deleted", data: deleteUser });
+			return res.status(200).json({ message: "User deleted" });
 		} catch (error) {
 			return res.status(500).json({
 				message: "Something went wrong",

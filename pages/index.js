@@ -5,7 +5,7 @@ import Pricing from "./components/Pricing";
 import Statistics from "./components/Statistics";
 import Testimonials from "./components/Testimonials";
 import Head from "next/head";
-import Users from "./components/Users/Users";
+import Pets from "./components/Pets/Pets";
 
 export default function Home() {
 	return (
@@ -14,7 +14,7 @@ export default function Home() {
 				<title>Home</title>
 			</Head>
 			<Navbar />
-			<Users />
+			<Pets />
 			<Hero />
 			<Statistics />
 			<Testimonials />

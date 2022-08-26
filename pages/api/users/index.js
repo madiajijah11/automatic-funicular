@@ -1,6 +1,6 @@
 import mongoDbConnect from "../../lib/mongodb";
 import bcrypt from "bcryptjs";
-import User from "../../models/user";
+import User from "../../models/userModel";
 
 export default async function handler(req, res) {
 	await mongoDbConnect();
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 					message: "No users found",
 				});
 			}
-			return res.status(200).json({ message: "Complete users found", data: getAllUsers });
+			return res.status(200).json(getAllUsers);
 		} catch (error) {
 			return res.status(500).json({ message: "Something went wrong" });
 		}
@@ -38,7 +38,7 @@ export default async function handler(req, res) {
 				password: hashedPassword,
 			});
 			await newUser1.save();
-			return res.status(201).json({ message: "User created", data: newUser });
+			return res.status(201).json({ message: "User created" });
 		} catch (error) {
 			return res.status(500).json({ message: "Something went wrong" });
 		}

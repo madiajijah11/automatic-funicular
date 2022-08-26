@@ -1,6 +1,6 @@
 import mongoDbConnect from "../../lib/mongodb";
 import { TableContainer, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
-import userModel from "../../models/userModel";
+import User from "../../models/userModel";
 
 const Users = ({ users }) => {
 	return (
@@ -26,15 +26,11 @@ const Users = ({ users }) => {
 	);
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 	await mongoDbConnect();
 
-	const result = await userModel.find({});
-	const users = result.map((data) => {
-		const user = data.toObject();
-		user._id = user._id.toString();
-		return user;
-	});
+	const result = await User.find({});
+	const users = result.json();
 
 	return {
 		props: {
