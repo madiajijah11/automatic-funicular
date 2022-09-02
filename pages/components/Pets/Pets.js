@@ -1,6 +1,5 @@
 import mongoDbConnect from "../../lib/mongodb";
 import { TableContainer, Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
-import Pet from "../../models/petModel";
 
 const Pets = ({ pets }) => {
 	return (
@@ -16,31 +15,30 @@ const Pets = ({ pets }) => {
 					</Tr>
 				</Thead>
 				<Tbody>
-					{pets &&
-						pets.map((pet) => (
-							<Tr key={pet._id}>
-								<Td>{pet.name}</Td>
-								<Td>{pet.age}</Td>
-								<Td>{pet.type}</Td>
-								<Td>{pet.breed}</Td>
-								<Td>{pet.description}</Td>
-							</Tr>
-						))}
+					{pets?.map((pet) => (
+						<Tr>
+							<Td>{pet.name}</Td>
+							<Td>{pet.age}</Td>
+							<Td>{pet.type}</Td>
+							<Td>{pet.breed}</Td>
+							<Td>{pet.description}</Td>
+						</Tr>
+					))}
 				</Tbody>
 			</Table>
 		</TableContainer>
 	);
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	await mongoDbConnect();
 
-	const result = await Pet.find({});
-	const pets = result.json();
+	const res = await fetch("http://localhost:3000/api/pets");
+	const data = await res.json();
 
 	return {
 		props: {
-			pets: pets,
+			pets: data,
 		},
 	};
 }

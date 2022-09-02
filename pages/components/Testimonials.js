@@ -147,7 +147,7 @@ export default function Testimonials() {
 			</Box>
 			<SimpleGrid columns={{ base: 1, xl: 2 }} spacing={"20"} mt={16} mx={"auto"}>
 				{testimonials.map((cardInfo, index) => (
-					<TestimonialCard {...cardInfo} index={index} />
+					<TestimonialCard {...cardInfo} index={index} key={index} />
 				))}
 			</SimpleGrid>
 			<Box>
